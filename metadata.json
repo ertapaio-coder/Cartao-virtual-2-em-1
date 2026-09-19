@@ -1,0 +1,7 @@
+{
+  "name": "VC Virtual Card",
+  "description": "Uma nova forma de pagar online e presencialmente. Cartão virtual 2 em 1 com carregamento via M-Pesa ou e-Mola e pagamentos presenciais via POS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
