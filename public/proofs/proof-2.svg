@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 620" width="100%" height="100%" style="background:#0b141a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <pattern id="wa-pattern-2" width="60" height="60" patternUnits="userSpaceOnUse" opacity="0.04">
+      <path d="M10 10 L20 20 M40 10 L50 20 M10 40 L20 50 M40 40 L50 50" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="30" cy="30" r="3" fill="#ffffff"/>
+      <rect x="25" y="10" width="10" height="6" rx="2" fill="#ffffff"/>
+      <circle cx="15" cy="25" r="2" fill="#ffffff"/>
+    </pattern>
+    <filter id="blur-pixel-2">
+      <feGaussianBlur stdDeviation="3.5" />
+    </filter>
+  </defs>
+
+  <rect width="380" height="620" fill="#0b141a" />
+  <rect width="380" height="620" fill="url(#wa-pattern-2)" />
+
+  <!-- Status Bar & Warning Banner -->
+  <rect x="0" y="0" width="380" height="32" fill="#111b21" />
+  <text x="280" y="20" fill="#aebac1" font-size="11" font-weight="600">7:42 PM</text>
+  <rect x="340" y="11" width="22" height="11" rx="2" fill="none" stroke="#aebac1" stroke-width="1.2" />
+  <rect x="342" y="13" width="16" height="7" rx="1" fill="#ffffff" />
+  <path d="M363 14 Q364 14 364 16.5 Q364 19 363 19" fill="#aebac1" />
+
+  <!-- Message 1: Incoming Grey -->
+  <g transform="translate(16, 44)">
+    <rect width="220" height="34" rx="8" fill="#202c33" />
+    <text x="12" y="21" fill="#e9edef" font-size="13">Ja ta tudo falta algo?</text>
+    <text x="165" y="24" fill="#8696a0" font-size="10">7:42 PM</text>
+  </g>
+
+  <!-- Message 2: Outgoing Green (Edited) -->
+  <g transform="translate(142, 86)">
+    <rect width="222" height="34" rx="8" fill="#005c4b" />
+    <text x="12" y="21" fill="#e9edef" font-size="13" font-weight="600">Não! É tudo.</text>
+    <text x="108" y="24" fill="#8696a0" font-size="9.5">Edited 7:43 PM</text>
+    <path d="M205 22 L208 25 L215 18 M210 22 L213 25 L219 18" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 3: Incoming Grey -->
+  <g transform="translate(16, 128)">
+    <rect width="180" height="34" rx="8" fill="#202c33" />
+    <text x="12" y="21" fill="#e9edef" font-size="13">Acredito k sim</text>
+    <text x="125" y="24" fill="#8696a0" font-size="10">7:43 PM</text>
+  </g>
+
+  <!-- Message 4: Incoming Grey (International Payment Intent) -->
+  <g transform="translate(16, 170)">
+    <rect width="288" height="52" rx="8" fill="#202c33" />
+    <text x="12" y="20" fill="#e9edef" font-size="13">Quero usar para fazer pagamentos</text>
+    <text x="12" y="38" fill="#e9edef" font-size="13" font-weight="600">no site da co. Africa</text>
+    <text x="233" y="42" fill="#8696a0" font-size="10">7:44 PM</text>
+  </g>
+
+  <!-- Message 5: Outgoing Green -->
+  <g transform="translate(156, 230)">
+    <rect width="208" height="34" rx="8" fill="#005c4b" />
+    <text x="12" y="21" fill="#e9edef" font-size="13" font-weight="500">Podes proceder</text>
+    <text x="146" y="24" fill="#8696a0" font-size="10">7:44 PM</text>
+    <path d="M191 22 L194 25 L201 18 M196 22 L199 25 L205 18" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 6: Incoming Grey -->
+  <g transform="translate(16, 272)">
+    <rect width="224" height="34" rx="8" fill="#202c33" />
+    <text x="12" y="21" fill="#e9edef" font-size="13">Esta bem obrigada</text>
+    <text x="169" y="24" fill="#8696a0" font-size="10">7:45 PM</text>
+  </g>
+
+  <!-- Message 7: Incoming Grey -->
+  <g transform="translate(16, 314)">
+    <rect width="270" height="52" rx="8" fill="#202c33" />
+    <text x="12" y="20" fill="#e9edef" font-size="13">Qualquer duvida posso vir</text>
+    <text x="12" y="38" fill="#e9edef" font-size="13">consultar?</text>
+    <text x="215" y="42" fill="#8696a0" font-size="10">7:45 PM</text>
+  </g>
+
+  <!-- Message 8: Outgoing Green -->
+  <g transform="translate(242, 374)">
+    <rect width="122" height="34" rx="8" fill="#005c4b" />
+    <text x="12" y="21" fill="#e9edef" font-size="13" font-weight="600">Sim</text>
+    <text x="60" y="24" fill="#8696a0" font-size="10">7:45 PM</text>
+    <path d="M105 22 L108 25 L115 18 M110 22 L113 25 L119 18" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 9: Incoming Grey -->
+  <g transform="translate(16, 416)">
+    <rect width="170" height="34" rx="8" fill="#202c33" />
+    <text x="12" y="21" fill="#e9edef" font-size="13">Obrigada</text>
+    <text x="115" y="24" fill="#8696a0" font-size="10">7:45 PM</text>
+  </g>
+
+  <!-- Message 10: Outgoing Green (Quote Reply) -->
+  <g transform="translate(196, 458)">
+    <rect width="168" height="66" rx="8" fill="#005c4b" />
+    <rect x="8" y="8" width="152" height="28" rx="4" fill="#025144" />
+    <rect x="8" y="8" width="4" height="28" rx="1" fill="#f43f5e" />
+    <rect x="18" y="12" width="60" height="7" rx="2" fill="#f43f5e" opacity="0.7" />
+    <text x="18" y="29" fill="#e9edef" font-size="11">Obrigada</text>
+    <!-- Message text -->
+    <text x="12" y="54" fill="#e9edef" font-size="13" font-weight="500">Disponha</text>
+    <text x="106" y="56" fill="#8696a0" font-size="10">7:47 PM</text>
+    <path d="M151 54 L154 57 L161 50 M156 54 L159 57 L165 50" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 11: Incoming Grey (Praise + Heart Reaction) -->
+  <g transform="translate(16, 532)">
+    <rect width="250" height="42" rx="8" fill="#202c33" />
+    <text x="12" y="26" fill="#e9edef" font-size="13" font-weight="600">Obrigada pela paciência</text>
+    <text x="195" y="30" fill="#8696a0" font-size="10">7:47 PM</text>
+    <!-- Heart Reaction Badge -->
+    <rect x="18" y="36" width="30" height="26" rx="13" fill="#202c33" stroke="#111b21" stroke-width="2" />
+    <text x="33" y="54" font-size="14" text-anchor="middle">❤️</text>
+  </g>
+</svg>

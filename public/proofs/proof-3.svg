@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 620" width="100%" height="100%" style="background:#0b141a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <pattern id="wa-pattern-3" width="60" height="60" patternUnits="userSpaceOnUse" opacity="0.04">
+      <path d="M10 10 L20 20 M40 10 L50 20 M10 40 L20 50 M40 40 L50 50" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="30" cy="30" r="3" fill="#ffffff"/>
+      <rect x="25" y="10" width="10" height="6" rx="2" fill="#ffffff"/>
+      <circle cx="15" cy="25" r="2" fill="#ffffff"/>
+    </pattern>
+    <filter id="blur-pixel-3">
+      <feGaussianBlur stdDeviation="3" />
+    </filter>
+  </defs>
+
+  <rect width="380" height="620" fill="#0b141a" />
+  <rect width="380" height="620" fill="url(#wa-pattern-3)" />
+
+  <!-- Message 1: Outgoing Green (Video/Instruction card) -->
+  <g transform="translate(100, 16)">
+    <rect width="264" height="84" rx="8" fill="#005c4b" />
+    <!-- Thumbnail preview header -->
+    <rect x="8" y="8" width="248" height="24" rx="4" fill="#025144" />
+    <rect x="8" y="8" width="4" height="24" rx="1" fill="#818cf8" />
+    <text x="18" y="24" fill="#818cf8" font-size="11" font-weight="700">Finalização.</text>
+    <text x="12" y="50" fill="#e9edef" font-size="12.5">Assista ao vídeo, vás poder</text>
+    <text x="12" y="68" fill="#e9edef" font-size="12.5">resolver esse problema</text>
+    <text x="202" y="74" fill="#8696a0" font-size="10">9:56 AM</text>
+    <path d="M246 72 L249 75 L256 68 M251 72 L254 75 L260 68" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 2: Incoming Grey -->
+  <g transform="translate(16, 110)">
+    <rect width="232" height="34" rx="8" fill="#202c33" />
+    <text x="12" y="21" fill="#e9edef" font-size="13" font-weight="600">Já resolvi obrigada</text>
+    <text x="175" y="24" fill="#8696a0" font-size="10">10:03 AM</text>
+  </g>
+
+  <!-- Message 3: Incoming Grey (How to pay online) -->
+  <g transform="translate(16, 152)">
+    <rect width="320" height="56" rx="8" fill="#202c33" />
+    <text x="12" y="22" fill="#e9edef" font-size="13">Gostaria de saber como é que</text>
+    <text x="12" y="42" fill="#e9edef" font-size="13" font-weight="600">posso fazer para pagar on-line</text>
+    <text x="264" y="48" fill="#8696a0" font-size="10">10:04 AM</text>
+  </g>
+
+  <!-- Message 4: Outgoing Green (Quote Reply on Online Payment) -->
+  <g transform="translate(85, 218)">
+    <rect width="279" height="88" rx="8" fill="#005c4b" />
+    <!-- Quote box -->
+    <rect x="8" y="8" width="263" height="38" rx="4" fill="#025144" />
+    <rect x="8" y="8" width="4" height="38" rx="1" fill="#eab308" />
+    <text x="18" y="22" fill="#8696a0" font-size="10.5">Gostaria de saber como é que posso fazer</text>
+    <text x="18" y="36" fill="#8696a0" font-size="10.5">para pagar on-line</text>
+    <!-- Message text with blurred instructions -->
+    <rect x="12" y="55" width="45" height="11" rx="2" fill="#ffffff" opacity="0.4" filter="url(#blur-pixel-3)" />
+    <text x="62" y="66" fill="#e9edef" font-size="12.5" font-weight="500">visualizar os dados</text>
+    <text x="12" y="82" fill="#e9edef" font-size="12.5" font-weight="500">do teu cartão</text>
+    <text x="216" y="83" fill="#8696a0" font-size="10">10:04 AM</text>
+    <path d="M261 81 L264 84 L271 77 M266 81 L269 84 L275 77" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 5: Outgoing Green (Quote Reply Disponha) -->
+  <g transform="translate(150, 314)">
+    <rect width="214" height="66" rx="8" fill="#005c4b" />
+    <rect x="8" y="8" width="198" height="26" rx="4" fill="#025144" />
+    <rect x="8" y="8" width="4" height="26" rx="1" fill="#eab308" />
+    <text x="18" y="24" fill="#8696a0" font-size="11">Já resolvi obrigada</text>
+    <text x="12" y="52" fill="#e9edef" font-size="13" font-weight="500">Disponha</text>
+    <text x="151" y="54" fill="#8696a0" font-size="10">10:04 AM</text>
+    <path d="M196 52 L199 55 L206 48 M201 52 L204 55 L210 48" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 6: Incoming Grey (Friend Referral Proof 1) -->
+  <g transform="translate(16, 390)">
+    <rect width="298" height="56" rx="8" fill="#202c33" />
+    <text x="12" y="22" fill="#e9edef" font-size="13">Obrigada . Acabo de partilhar</text>
+    <text x="12" y="42" fill="#e9edef" font-size="13" font-weight="600">o seu contacto com o meu amigo</text>
+    <text x="242" y="48" fill="#8696a0" font-size="10">10:05 AM</text>
+  </g>
+
+  <!-- Message 7: Incoming Grey (Friend Referral Proof 2) -->
+  <g transform="translate(16, 456)">
+    <rect width="320" height="42" rx="8" fill="#202c33" />
+    <text x="12" y="26" fill="#e9edef" font-size="13.5" font-weight="700">Ele também quer adquirir o cartão</text>
+    <text x="264" y="30" fill="#8696a0" font-size="10">10:05 AM</text>
+  </g>
+</svg>

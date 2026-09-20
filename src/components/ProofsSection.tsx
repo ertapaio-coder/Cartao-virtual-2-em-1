@@ -1,54 +1,33 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ImagePlus, CheckCircle2, UploadCloud } from 'lucide-react';
 
 interface ProofItem {
   id: number;
-  label: string;
-  name: string;
-  imageSrc?: string;
+  alt: string;
+  imageSrc: string;
 }
 
-const defaultProofs: ProofItem[] = [
+const proofs: ProofItem[] = [
   {
     id: 1,
-    label: "[INSERIR PROVA REAL 1]",
-    name: "[Nome do cliente]",
+    alt: "Comprovativo real 1 - Ativação e conversão automática",
+    imageSrc: "https://yhdsbgrgihxvzkwjwaqk.supabase.co/storage/v1/object/public/product-images/Screenshot%202026-09-19%20075855.png",
   },
   {
     id: 2,
-    label: "[INSERIR PROVA REAL 2]",
-    name: "[Nome do cliente]",
+    alt: "Comprovativo real 2 - Pagamento internacional aprovado",
+    imageSrc: "https://yhdsbgrgihxvzkwjwaqk.supabase.co/storage/v1/object/public/product-images/Screenshot%202026-09-19%20075939.png",
   },
   {
     id: 3,
-    label: "[INSERIR PROVA REAL 3]",
-    name: "[Nome do cliente]",
+    alt: "Comprovativo real 3 - Recomendação de cliente satisfeito",
+    imageSrc: "https://yhdsbgrgihxvzkwjwaqk.supabase.co/storage/v1/object/public/product-images/Screenshot%202026-09-19%20080105.png",
   },
 ];
 
 export const ProofsSection = () => {
-  const [proofs, setProofs] = useState<ProofItem[]>(defaultProofs);
-
-  const handleImageUpload = (id: number, e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setProofs((prev) =>
-        prev.map((item) => (item.id === id ? { ...item, imageSrc: url } : item))
-      );
-    }
-  };
-
-  const handleNameChange = (id: number, newName: string) => {
-    setProofs((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, name: newName } : item))
-    );
-  };
-
   return (
     <section id="proofs-section" className="py-14 sm:py-20 px-3 sm:px-4 bg-background">
-      <div className="container max-w-4xl mx-auto text-center">
+      <div className="container max-w-5xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,11 +41,11 @@ export const ProofsSection = () => {
             Veja algumas das pessoas que já conseguiram configurar o cartão
           </p>
           <p className="text-muted-foreground text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Aqui serão apresentadas <strong className="text-foreground">provas reais dos nossos clientes</strong>, mostrando o processo de configuração e utilização do cartão.
+            Aqui estão <strong className="text-foreground">provas reais dos nossos clientes</strong>, mostrando o processo de configuração e utilização do cartão.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-3 gap-6 mb-10">
+        <div className="grid sm:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
           {proofs.map((proof, idx) => (
             <motion.div
               key={proof.id}
@@ -74,52 +53,15 @@ export const ProofsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-card border-2 border-dashed border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all flex flex-col justify-between p-4"
+              className="flex justify-center"
             >
-              <div className="relative aspect-[4/5] w-full rounded-lg bg-secondary/50 flex flex-col items-center justify-center p-4 overflow-hidden mb-3 border border-border/50">
-                {proof.imageSrc ? (
-                  <img
-                    src={proof.imageSrc}
-                    alt={proof.name}
-                    className="w-full h-full object-cover rounded-md"
-                  />
-                ) : (
-                  <div className="text-center flex flex-col items-center justify-center h-full p-2">
-                    <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-primary mb-2">
-                      <ImagePlus size={24} />
-                    </div>
-                    <span className="text-primary font-display font-bold text-xs sm:text-sm uppercase tracking-wide">
-                      {proof.label}
-                    </span>
-                    <p className="text-muted-foreground text-[11px] mt-1">
-                      Captura de ecrã ou comprovativo real
-                    </p>
-                  </div>
-                )}
-
-                {/* Upload button */}
-                <label className="absolute bottom-2 right-2 bg-card/90 hover:bg-card text-foreground border border-border text-[11px] font-semibold px-2.5 py-1.5 rounded-md cursor-pointer flex items-center gap-1 shadow-sm transition-colors">
-                  <UploadCloud size={13} />
-                  <span>{proof.imageSrc ? "Alterar" : "Carregar"}</span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(proof.id, e)}
-                    className="hidden"
-                  />
-                </label>
-              </div>
-
-              <div className="flex items-center justify-center gap-1.5 pt-1">
-                <CheckCircle2 size={16} className="text-primary shrink-0" />
-                <input
-                  type="text"
-                  value={proof.name}
-                  onChange={(e) => handleNameChange(proof.id, e.target.value)}
-                  className="text-center font-display font-bold text-sm text-foreground bg-transparent border-b border-transparent hover:border-border focus:border-primary focus:outline-none px-1"
-                  placeholder="[Nome do cliente]"
-                />
-              </div>
+              <img
+                src={proof.imageSrc}
+                alt={proof.alt}
+                referrerPolicy="no-referrer"
+                className="w-full max-w-xs sm:max-w-none rounded-xl shadow-lg border border-border object-contain"
+                loading="lazy"
+              />
             </motion.div>
           ))}
         </div>

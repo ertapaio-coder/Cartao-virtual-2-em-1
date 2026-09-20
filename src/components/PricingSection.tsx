@@ -113,7 +113,7 @@ export const PricingSection = () => {
             <CtaButton
               text="QUERO O MEU CARTÃO VIRTUAL AGORA →"
               subtext="👆 Clica no botão acima para fazer o pagamento e receber o acesso à mentoria."
-              href={checkoutUrl || "#"}
+              href={checkoutUrl || undefined}
               className="w-full"
             />
             <div className="flex items-center justify-center gap-1.5 text-primary text-xs font-semibold mt-3">

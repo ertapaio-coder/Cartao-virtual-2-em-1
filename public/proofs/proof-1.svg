@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 620" width="100%" height="100%" style="background:#0b141a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- WhatsApp subtle wallpaper pattern -->
+    <pattern id="wa-pattern" width="60" height="60" patternUnits="userSpaceOnUse" opacity="0.04">
+      <path d="M10 10 L20 20 M40 10 L50 20 M10 40 L20 50 M40 40 L50 50" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="30" cy="30" r="3" fill="#ffffff"/>
+      <rect x="25" y="10" width="10" height="6" rx="2" fill="#ffffff"/>
+      <circle cx="15" cy="25" r="2" fill="#ffffff"/>
+    </pattern>
+    <filter id="blur-pixel">
+      <feGaussianBlur stdDeviation="3.5" />
+    </filter>
+  </defs>
+
+  <!-- Base dark background + pattern -->
+  <rect width="380" height="620" fill="#0b141a" />
+  <rect width="380" height="620" fill="url(#wa-pattern)" />
+
+  <!-- Status Bar -->
+  <rect x="0" y="0" width="380" height="32" fill="#111b21" />
+  <rect x="18" y="5" width="48" height="22" rx="11" fill="#1b8755" />
+  <text x="42" y="20" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">10:50</text>
+  <text x="310" y="20" fill="#aebac1" font-size="11" font-weight="600">LTE</text>
+  <!-- Battery icon -->
+  <rect x="340" y="11" width="22" height="11" rx="2" fill="none" stroke="#aebac1" stroke-width="1.2" />
+  <rect x="342" y="13" width="16" height="7" rx="1" fill="#ffffff" />
+  <path d="M363 14 Q364 14 364 16.5 Q364 19 363 19" fill="#aebac1" />
+
+  <!-- WhatsApp Header -->
+  <rect x="0" y="32" width="380" height="54" fill="#111b21" />
+  <!-- Back arrow -->
+  <path d="M18 59 L26 51 M18 59 L26 67" stroke="#00a884" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Profile picture (blurred) -->
+  <circle cx="48" cy="59" r="18" fill="#374248" />
+  <g filter="url(#blur-pixel)">
+    <rect x="36" y="47" width="24" height="24" rx="4" fill="#8696a0" />
+    <circle cx="48" cy="55" r="6" fill="#f59e0b" />
+  </g>
+  <!-- Name with privacy censor bar -->
+  <rect x="74" y="51" width="120" height="15" rx="3" fill="#ffffff" opacity="0.35" filter="url(#blur-pixel)" />
+  <circle cx="205" cy="59" r="3" fill="#8696a0" />
+  <!-- Video and Phone icons -->
+  <path d="M298 52 L310 52 L310 66 L298 66 Z M310 56 L319 51 L319 67 L310 62 Z" fill="#aebac1" />
+  <path d="M344 50 C341 50 338 52 338 55 C338 63 344 69 352 69 C355 69 357 66 357 63 L354 60 C353 59 351 59 350 60 L348 61 C345 59 344 58 342 55 L343 53 C344 52 344 50 343 49 Z" fill="#aebac1" />
+
+  <!-- Message 1: Outgoing Green -->
+  <g transform="translate(130, 98)">
+    <rect width="234" height="34" rx="8" fill="#005c4b" />
+    <text x="12" y="21" fill="#e9edef" font-size="13">E tudo nem?</text>
+    <text x="172" y="24" fill="#8696a0" font-size="10">10:42 PM</text>
+    <path d="M217 22 L220 25 L227 18 M222 22 L225 25 L231 18" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 2: Incoming Grey -->
+  <g transform="translate(16, 140)">
+    <rect width="180" height="34" rx="8" fill="#202c33" />
+    <text x="12" y="21" fill="#e9edef" font-size="13">Sim</text>
+    <text x="125" y="24" fill="#8696a0" font-size="10">10:42 PM</text>
+  </g>
+
+  <!-- Message 3: Outgoing Green -->
+  <g transform="translate(75, 182)">
+    <rect width="289" height="52" rx="8" fill="#005c4b" />
+    <text x="12" y="20" fill="#e9edef" font-size="13">Caso vás querer fazer pagamentos</text>
+    <text x="12" y="38" fill="#e9edef" font-size="13">em PÓS</text>
+    <text x="228" y="42" fill="#8696a0" font-size="10">10:43 PM</text>
+    <path d="M272 40 L275 43 L282 36 M277 40 L280 43 L286 36" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 4: Outgoing Green (Confidential data blurred) -->
+  <g transform="translate(100, 242)">
+    <rect width="264" height="36" rx="8" fill="#005c4b" />
+    <rect x="12" y="11" width="180" height="14" rx="3" fill="#ffffff" opacity="0.4" filter="url(#blur-pixel)" />
+    <text x="202" y="26" fill="#8696a0" font-size="10">10:43 PM</text>
+    <path d="M246 24 L249 27 L256 20 M251 24 L254 27 L260 20" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 5: Incoming Voice Audio (Grey) -->
+  <g transform="translate(16, 286)">
+    <rect width="268" height="58" rx="8" fill="#202c33" />
+    <!-- Play button -->
+    <circle cx="28" cy="29" r="16" fill="#00a884" />
+    <polygon points="25,23 34,29 25,35" fill="#111b21" />
+    <!-- Waveform line -->
+    <path d="M54 29 L54 29 M60 25 L60 33 M66 22 L66 36 M72 26 L72 32 M78 20 L78 38 M84 25 L84 33 M90 28 L90 30 M96 22 L96 36 M102 24 L102 34 M108 27 L108 31 M114 21 L114 37 M120 25 L120 33 M126 27 L126 31 M132 23 L132 35 M138 28 L138 30 M144 24 L144 34 M150 26 L150 32 M156 29 L156 29" stroke="#8696a0" stroke-width="2.5" stroke-linecap="round" />
+    <circle cx="72" cy="29" r="4" fill="#53bdeb" />
+    <!-- Avatar badge -->
+    <circle cx="240" cy="26" r="14" fill="#374248" />
+    <circle cx="240" cy="24" r="6" fill="#f59e0b" filter="url(#blur-pixel)" />
+    <!-- Duration and timestamp -->
+    <text x="56" y="47" fill="#8696a0" font-size="11">1:16</text>
+    <text x="214" y="47" fill="#8696a0" font-size="10">10:44 PM</text>
+  </g>
+
+  <!-- Message 6: Incoming Grey (Quote Reply) -->
+  <g transform="translate(16, 352)">
+    <rect width="220" height="66" rx="8" fill="#202c33" />
+    <!-- Reply quote box -->
+    <rect x="8" y="8" width="204" height="28" rx="4" fill="#182229" />
+    <rect x="8" y="8" width="4" height="28" rx="1" fill="#f59e0b" />
+    <text x="18" y="21" fill="#f59e0b" font-size="11" font-weight="700">You</text>
+    <rect x="18" y="24" width="120" height="7" rx="2" fill="#8696a0" opacity="0.4" />
+    <!-- Message text -->
+    <text x="12" y="54" fill="#e9edef" font-size="13">Ohh, obrigada.</text>
+    <text x="166" y="56" fill="#8696a0" font-size="10">10:44 PM</text>
+  </g>
+
+  <!-- Message 7: Outgoing Green (Voice Message) -->
+  <g transform="translate(125, 426)">
+    <rect width="239" height="70" rx="8" fill="#005c4b" />
+    <path d="M22 28 C22 23 26 20 30 20 C34 20 38 23 38 28 L38 34 C38 39 34 42 30 42 C26 42 22 39 22 34 Z M26 46 L34 46" stroke="#8696a0" stroke-width="2" fill="none" />
+    <text x="44" y="32" fill="#e9edef" font-size="13" font-weight="500">Voice message (1:16)</text>
+    <text x="12" y="56" fill="#e9edef" font-size="12.5">Sim vai converter automaticamente</text>
+    <text x="178" y="62" fill="#8696a0" font-size="10">10:48 PM</text>
+    <path d="M222 60 L225 63 L232 56 M227 60 L230 63 L236 56" stroke="#53bdeb" stroke-width="1.3" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Message 8: Incoming Grey (Praise & Activation Success) -->
+  <g transform="translate(16, 504)">
+    <rect width="206" height="34" rx="8" fill="#202c33" />
+    <text x="12" y="21" fill="#e9edef" font-size="13" font-weight="500">Muito obrigada!</text>
+    <text x="150" y="24" fill="#8696a0" font-size="10">10:48 PM</text>
+  </g>
+
+  <!-- Message 9: Incoming Grey (Core Proof) -->
+  <g transform="translate(16, 546)">
+    <rect width="268" height="54" rx="8" fill="#202c33" />
+    <text x="12" y="20" fill="#e9edef" font-size="13">Agradeço imenso a explicação e</text>
+    <text x="12" y="38" fill="#e9edef" font-size="13" font-weight="600">foi fácil ativar.</text>
+    <text x="212" y="44" fill="#8696a0" font-size="10">10:49 PM</text>
+  </g>
+</svg>
