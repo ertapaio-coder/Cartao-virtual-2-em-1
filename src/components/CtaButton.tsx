@@ -1,11 +1,7 @@
 import { motion } from 'motion/react';
 
-// Link direto para o WhatsApp com mensagem pré-definida
-const WHATSAPP_NUMBER = "258844810213";
-const PRE_SELECTED_MESSAGE = encodeURIComponent(
-  "Olá! Quero adquirir o Minicurso Cartão Virtual por 199 MT e ter acesso imediato à mentoria."
-);
-const DEFAULT_CHECKOUT_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${PRE_SELECTED_MESSAGE}`;
+// Link oficial de checkout do Minicurso Cartão Virtual
+const DEFAULT_CHECKOUT_URL = "https://checkout.escalepay.com/8771304";
 
 interface CtaButtonProps {
   text?: string;

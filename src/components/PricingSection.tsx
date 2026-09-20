@@ -18,7 +18,7 @@ const includes = [
 
 export const PricingSection = () => {
   // Permite configurar o link real de pagamento/checkout
-  const [checkoutUrl, setCheckoutUrl] = useState<string>("");
+  const [checkoutUrl, setCheckoutUrl] = useState<string>("https://checkout.escalepay.com/8771304");
   const [showConfig, setShowConfig] = useState<boolean>(false);
 
   return (
