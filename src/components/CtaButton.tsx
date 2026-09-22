@@ -25,6 +25,19 @@ export const CtaButton = ({
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      // Dispara o evento de InitiateCheckout no Meta Pixel
+      if (typeof window !== 'undefined' && (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq) {
+        try {
+          (window as unknown as { fbq: (...args: unknown[]) => void }).fbq('track', 'InitiateCheckout', {
+            content_name: 'Minicurso Cartão Virtual',
+            value: 199,
+            currency: 'MZN',
+          });
+        } catch {
+          // Ignora silenciosamente se houver bloqueador de anúncios
+        }
+      }
     }
   };
 
