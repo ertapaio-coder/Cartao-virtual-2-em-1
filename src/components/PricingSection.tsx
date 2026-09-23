@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Check, Zap, Shield, Link2 } from 'lucide-react';
+import { Check, Zap, Shield } from 'lucide-react';
 import { CtaButton } from './CtaButton';
 
 const includes = [
@@ -17,10 +16,6 @@ const includes = [
 ];
 
 export const PricingSection = () => {
-  // Permite configurar o link real de pagamento/checkout
-  const [checkoutUrl, setCheckoutUrl] = useState<string>("https://checkout.escalepay.com/8771304");
-  const [showConfig, setShowConfig] = useState<boolean>(false);
-
   return (
     <section id="preco" className="py-16 sm:py-24 px-3 sm:px-4 relative overflow-hidden">
       {/* Background glow */}
@@ -113,43 +108,12 @@ export const PricingSection = () => {
             <CtaButton
               text="QUERO O MEU CARTÃO VIRTUAL AGORA →"
               subtext="👆 Clica no botão acima para fazer o pagamento e receber o acesso à mentoria."
-              href={checkoutUrl || undefined}
               className="w-full"
             />
             <div className="flex items-center justify-center gap-1.5 text-primary text-xs font-semibold mt-3">
               <Zap size={13} />
               <span>⚡ Oferta promocional por tempo limitado.</span>
             </div>
-          </div>
-
-          {/* Link configuration toggle for the site owner */}
-          <div className="mt-8 pt-4 border-t border-border/50 flex flex-col items-center">
-            <button
-              type="button"
-              onClick={() => setShowConfig(!showConfig)}
-              className="inline-flex items-center gap-1.5 text-[11px] text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              <Link2 size={12} />
-              <span>{showConfig ? "Ocultar link de pagamento" : "Configurar link de pagamento (checkout)"}</span>
-            </button>
-            {showConfig && (
-              <div className="mt-2.5 w-full max-w-md flex gap-2">
-                <input
-                  type="text"
-                  placeholder="https://o-teu-checkout-oficial..."
-                  value={checkoutUrl}
-                  onChange={(e) => setCheckoutUrl(e.target.value)}
-                  className="flex-1 bg-background border border-border rounded-lg px-3 py-1.5 text-xs text-foreground focus:outline-none focus:border-primary"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfig(false)}
-                  className="bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer"
-                >
-                  Guardar
-                </button>
-              </div>
-            )}
           </div>
         </motion.div>
       </div>
