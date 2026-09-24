@@ -77,7 +77,7 @@ export const PricingSection = () => {
               PREÇO PROMOCIONAL:
             </div>
             <div className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-gradient-red tracking-tight leading-none mb-2">
-              199 MT
+              274 MT
             </div>
             <p className="text-muted-foreground text-xs font-medium">
               Pagamento único • Acesso completo

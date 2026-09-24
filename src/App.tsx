@@ -45,7 +45,7 @@ export default function App() {
         {/* 8. E ainda recebes estes bónus */}
         <BonusesSection />
 
-        {/* 9. Quanto vale ter mais liberdade nos teus pagamentos? (Preço Promocional: 199 MT) */}
+        {/* 9. Quanto vale ter mais liberdade nos teus pagamentos? (Preço Promocional: 274 MT) */}
         <PricingSection />
 
         {/* 10. Perguntas Frequentes (10 FAQs oficiais) */}

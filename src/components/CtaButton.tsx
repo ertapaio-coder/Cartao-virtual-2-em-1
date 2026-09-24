@@ -31,7 +31,7 @@ export const CtaButton = ({
         try {
           (window as unknown as { fbq: (...args: unknown[]) => void }).fbq('track', 'InitiateCheckout', {
             content_name: 'Minicurso Cartão Virtual',
-            value: 199,
+            value: 274,
             currency: 'MZN',
           });
         } catch {
