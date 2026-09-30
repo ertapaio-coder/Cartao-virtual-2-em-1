@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 
 // Link oficial de checkout do Minicurso Cartão Virtual
-const DEFAULT_CHECKOUT_URL = "https://checkout.escalepay.com/8771304";
+const DEFAULT_CHECKOUT_URL = "https://www.ratixpay.co.mz/checkout.html?produto=M6SH2N5UN";
 
 interface CtaButtonProps {
   text?: string;
@@ -31,7 +31,7 @@ export const CtaButton = ({
         try {
           (window as unknown as { fbq: (...args: unknown[]) => void }).fbq('track', 'InitiateCheckout', {
             content_name: 'Minicurso Cartão Virtual',
-            value: 274,
+            value: 299,
             currency: 'MZN',
           });
         } catch {
