@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 
 // Link oficial de checkout do Minicurso Cartão Virtual
-const DEFAULT_CHECKOUT_URL = "https://www.ratixpay.co.mz/checkout.html?produto=M6SH2N5UN";
+const DEFAULT_CHECKOUT_URL = "https://pay.tutora.co.mz/7f3180c52d57401d9a60801aeb66f2ac";
 
 interface CtaButtonProps {
   text?: string;
