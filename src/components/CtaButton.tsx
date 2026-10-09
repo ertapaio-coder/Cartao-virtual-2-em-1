@@ -1,7 +1,6 @@
 import { motion } from 'motion/react';
-
-// Link oficial de checkout do Minicurso Cartão Virtual
-const DEFAULT_CHECKOUT_URL = "https://pay.tutora.co.mz/7f3180c52d57401d9a60801aeb66f2ac";
+import { useCheckoutModal } from '../context/CheckoutModalContext';
+import { trackDualMetaEvent } from '../lib/metaTracking';
 
 interface CtaButtonProps {
   text?: string;
@@ -13,47 +12,43 @@ interface CtaButtonProps {
 export const CtaButton = ({
   text = "QUERO O MEU CARTÃO VIRTUAL AGORA →",
   subtext,
-  href = DEFAULT_CHECKOUT_URL,
+  href,
   className = "",
 }: CtaButtonProps) => {
-  const isAnchor = href.startsWith("#");
+  const { openCheckout } = useCheckoutModal();
+  const isAnchor = href?.startsWith("#");
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isAnchor) {
+  const handleClick = (e: React.MouseEvent) => {
+    if (isAnchor && href) {
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
-    } else {
-      // Dispara o evento de InitiateCheckout no Meta Pixel
-      if (typeof window !== 'undefined' && (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq) {
-        try {
-          (window as unknown as { fbq: (...args: unknown[]) => void }).fbq('track', 'InitiateCheckout', {
-            content_name: 'Minicurso Cartão Virtual',
-            value: 299,
-            currency: 'MZN',
-          });
-        } catch {
-          // Ignora silenciosamente se houver bloqueador de anúncios
-        }
-      }
+      return;
     }
+
+    // Se tiver openCheckout configurado, abre o checkout próprio e rastreia InitiateCheckout
+    e.preventDefault();
+    trackDualMetaEvent('InitiateCheckout', {}, {
+      value: 299,
+      currency: 'MZN',
+      content_name: 'Minicurso Cartão Virtual 2 em 1',
+    });
+    openCheckout();
   };
 
   return (
     <div className="flex flex-col items-center gap-2 w-full max-w-md mx-auto">
-      <motion.a
-        href={href}
+      <motion.button
+        type="button"
         onClick={handleClick}
-        target={isAnchor ? undefined : "_blank"}
-        rel={isAnchor ? undefined : "noopener noreferrer"}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className={`w-full sm:w-auto inline-flex items-center justify-center bg-gradient-red text-primary-foreground font-display font-bold text-xs sm:text-sm md:text-base px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-red-strong glow-pulse tracking-wide uppercase transition-all hover:bg-gradient-red-hover text-center leading-snug cursor-pointer ${className}`}
       >
         {text}
-      </motion.a>
+      </motion.button>
 
       {subtext && (
         <p className="text-muted-foreground text-[11px] sm:text-xs text-center max-w-sm font-medium leading-tight">
