@@ -30,17 +30,17 @@ export const MainSalesPage = () => {
         {/* 3. Apresentamos o Cartão Virtual 2 em 1 (Solução e Benefícios) */}
         <SolutionSection />
 
-        {/* 4. O que vais aprender (Aulas 01 a 07) */}
+        {/* 4. Resultados reais (Provas e comprovativos preparados) */}
+        <ProofsSection />
+
+        {/* 5. O que vais aprender (Aulas 01 a 07) */}
         <StepsSection />
 
-        {/* 5. O que podes fazer com o cartão? (6 Categorias) */}
+        {/* 6. O que podes fazer com o cartão? (6 Categorias) */}
         <WhatYouCanPaySection />
 
-        {/* 6. O que dizem os nossos clientes (Testemunhos Reais Editáveis) */}
+        {/* 7. O que dizem os nossos clientes (Testemunhos Reais Editáveis) */}
         <TestimonialsSection />
-
-        {/* 7. Resultados reais (Provas e comprovativos preparados) */}
-        <ProofsSection />
 
         {/* 8. E ainda recebes estes bónus */}
         <BonusesSection />
