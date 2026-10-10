@@ -4,6 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VC Virtual Card — Uma Nova Forma de Pagar Online e Presencialmente</title>
+
+    <!-- Compatibilidade para extensões do navegador e iframes (evita conflito com window.fetch getter) -->
+    <script>
+      (function() {
+        try {
+          var _origFetch = window.fetch ? window.fetch.bind(window) : undefined;
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return _origFetch; },
+            set: function(val) { _origFetch = val; },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (_) {}
+
+        window.addEventListener('error', function(event) {
+          if (event && event.filename && event.filename.includes('chrome-extension://')) {
+            event.preventDefault();
+          }
+        });
+      })();
+    </script>
     <meta name="description" content="Uma nova forma de pagar online e presencialmente com um cartão virtual 2 em 1. Carregamento via M-Pesa ou e-Mola e pagamentos presenciais via POS." />
     <meta property="og:title" content="VC Virtual Card — Uma Nova Forma de Pagar Online e Presencialmente" />
     <meta property="og:description" content="Uma nova forma de pagar online e presencialmente com um cartão virtual 2 em 1. Carregamento via M-Pesa ou e-Mola e pagamentos presenciais via POS." />

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import {
   CheckCircle2,
@@ -16,21 +16,40 @@ const SUPPORT_WHATSAPP_LINK = "https://wa.me/258862676534?text=Ol%C3%A1%20Ernest
 const HOTMART_LOGIN_URL = "https://consumer.hotmart.com/";
 
 export const ThankYouPage = () => {
+  const [customerName, setCustomerName] = useState<string>('');
+  const [customerEmail, setCustomerEmail] = useState<string>('');
+
   useEffect(() => {
-    // Garante que o evento de Purchase é disparado apenas uma vez por sessão
-    const trackedKey = 'meta_purchase_tracked_350';
-    if (!sessionStorage.getItem(trackedKey)) {
-      trackDualMetaEvent(
-        'Purchase',
-        {},
-        {
-          value: 350,
-          currency: 'MZN',
-          content_name: 'Minicurso Cartão Virtual 2 em 1',
-        }
-      );
-      sessionStorage.setItem(trackedKey, 'true');
+    // Altera o título da aba do navegador
+    document.title = "Acesso Confirmado | Minicurso Cartão Virtual 2 em 1";
+
+    let name = '';
+    let email = '';
+    let phone = '';
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      name = params.get('nome') || params.get('name') || '';
+      email = params.get('email') || '';
+      phone = params.get('tel') || params.get('phone') || '';
+      setCustomerName(name);
+      setCustomerEmail(email);
     }
+
+    // Dispara o evento oficial de Purchase (350 MT) para o Meta Pixel e Conversions API
+    trackDualMetaEvent(
+      'Purchase',
+      {
+        name: name || undefined,
+        phone: phone || undefined,
+        email: email || undefined,
+      },
+      {
+        value: 350,
+        currency: 'MZN',
+        content_name: 'Minicurso Cartão Virtual 2 em 1',
+      }
+    );
   }, []);
 
   return (
@@ -67,7 +86,7 @@ export const ThankYouPage = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-2xl sm:text-4xl md:text-5xl font-display font-bold leading-tight mb-4"
         >
-          Parabéns! O teu acesso ao <br className="hidden sm:inline" />
+          Parabéns{customerName ? `, ${customerName}` : ''}! O teu acesso ao <br className="hidden sm:inline" />
           <span className="text-gradient-red">Minicurso Cartão Virtual</span> está pronto! 🎉
         </motion.h1>
 
@@ -75,10 +94,17 @@ export const ThankYouPage = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-10 leading-relaxed"
+          className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed"
         >
           O teu pagamento de <strong className="text-foreground">350 MT</strong> foi confirmado e o teu acesso oficial já foi atribuído na plataforma da <strong className="text-foreground">Hotmart</strong>.
         </motion.p>
+
+        {customerEmail && (
+          <div className="mb-8 inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-4 py-2 rounded-xl text-xs font-semibold text-primary font-mono">
+            <Mail size={14} />
+            <span>Acesso enviado para: <strong>{customerEmail}</strong></span>
+          </div>
+        )}
 
         {/* 3 Passos para Aceder às Aulas */}
         <motion.div
