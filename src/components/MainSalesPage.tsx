@@ -15,7 +15,7 @@ import { Footer } from './Footer';
 
 export const MainSalesPage = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground pt-11 sm:pt-10 antialiased font-sans relative selection:bg-primary/20 selection:text-primary overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground pt-14 sm:pt-11 antialiased font-sans relative selection:bg-primary/20 selection:text-primary overflow-x-hidden">
       {/* Barra de urgência superior com temporizador regressivo */}
       <TopBanner />
 

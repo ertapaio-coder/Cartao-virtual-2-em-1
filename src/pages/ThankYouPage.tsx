@@ -111,21 +111,21 @@ export const ThankYouPage = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-2xl text-left max-w-2xl mx-auto mb-8 space-y-6"
+          className="bg-card border border-border rounded-2xl p-4 sm:p-8 shadow-2xl text-left max-w-2xl mx-auto mb-8 space-y-5 sm:space-y-6"
         >
-          <h2 className="font-display font-bold text-base sm:text-lg text-foreground uppercase tracking-wide border-b border-border pb-3 flex items-center justify-between">
+          <h2 className="font-display font-bold text-sm sm:text-lg text-foreground uppercase tracking-wide border-b border-border pb-3 flex flex-wrap items-center justify-between gap-2">
             <span>Como Aceder às Aulas Agora (3 Passos):</span>
-            <span className="text-xs text-primary font-mono font-semibold">Área Hotmart</span>
+            <span className="text-[11px] sm:text-xs text-primary font-mono font-semibold">Área Hotmart</span>
           </h2>
 
-          <div className="space-y-5">
+          <div className="space-y-4 sm:space-y-5">
             {/* Passo 1 */}
-            <div className="flex items-start gap-4">
-              <div className="w-9 h-9 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0 text-primary mt-0.5">
-                <Mail size={18} />
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0 text-primary mt-0.5">
+                <Mail size={16} className="sm:size-18" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm sm:text-base text-foreground mb-1">
+                <h3 className="font-semibold text-xs sm:text-base text-foreground mb-1">
                   1. Verifica o teu E-mail
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -135,12 +135,12 @@ export const ThankYouPage = () => {
             </div>
 
             {/* Passo 2 */}
-            <div className="flex items-start gap-4">
-              <div className="w-9 h-9 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0 text-primary mt-0.5">
-                <KeyRound size={18} />
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0 text-primary mt-0.5">
+                <KeyRound size={16} className="sm:size-18" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm sm:text-base text-foreground mb-1">
+                <h3 className="font-semibold text-xs sm:text-base text-foreground mb-1">
                   2. Define a tua Senha Pessoal
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -150,12 +150,12 @@ export const ThankYouPage = () => {
             </div>
 
             {/* Passo 3 */}
-            <div className="flex items-start gap-4">
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 text-emerald-400 mt-0.5">
-                <PlayCircle size={18} />
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 text-emerald-400 mt-0.5">
+                <PlayCircle size={16} className="sm:size-18" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm sm:text-base text-foreground mb-1">
+                <h3 className="font-semibold text-xs sm:text-base text-foreground mb-1">
                   3. Começa a Assistir Imediatamente
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -166,12 +166,12 @@ export const ThankYouPage = () => {
           </div>
 
           {/* Botão de Atalho para Hotmart */}
-          <div className="pt-4 border-t border-border flex flex-col sm:flex-row gap-3">
+          <div className="pt-4 border-t border-border flex flex-col sm:flex-row gap-2.5 sm:gap-3">
             <a
               href={HOTMART_LOGIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-red hover:bg-gradient-red-hover text-primary-foreground font-display font-bold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-red-strong uppercase tracking-wide transition-all hover:scale-[1.01]"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-red hover:bg-gradient-red-hover text-primary-foreground font-display font-bold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-red-strong uppercase tracking-wide transition-all hover:scale-[1.01] text-center"
             >
               <span>Ir para a Área de Membros Hotmart</span>
               <ExternalLink size={15} />
@@ -181,7 +181,7 @@ export const ThankYouPage = () => {
               href={SUPPORT_WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 border border-border text-foreground font-display font-semibold text-xs sm:text-sm py-3 px-4 rounded-xl transition-all"
+              className="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 border border-border text-foreground font-display font-semibold text-xs sm:text-sm py-3 px-4 rounded-xl transition-all text-center"
             >
               <MessageCircle size={16} className="text-emerald-400" />
               <span>Chamar Suporte no WhatsApp</span>
@@ -190,15 +190,15 @@ export const ThankYouPage = () => {
         </motion.div>
 
         {/* Security badges */}
-        <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs text-muted-foreground px-2">
           <div className="flex items-center gap-1.5">
             <ShieldCheck size={14} className="text-emerald-400" />
             <span>Acesso Vitalício Garantido</span>
           </div>
           <span>•</span>
           <div className="flex items-center gap-1.5">
-            <MessageCircle size={14} className="text-primary" />
-            <span>Suporte WhatsApp: +258 {SUPPORT_WHATSAPP_NUMBER}</span>
+            <CheckCircle2 size={14} className="text-primary" />
+            <span>Área de Membros Hotmart</span>
           </div>
         </div>
       </main>
