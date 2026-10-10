@@ -1,6 +1,13 @@
 import { motion } from 'motion/react';
-import { useCheckoutModal } from '../context/CheckoutModalContext';
 import { trackDualMetaEvent } from '../lib/metaTracking';
+
+const WHATSAPP_BUSINESS_NUMBER = "258862676534";
+const WHATSAPP_PREFILLED_MESSAGE =
+  "Olá Ernesto! Quero garantir minha vaga no Minicurso Cartão Virtual por 350 MT. Por favor, envie os dados de pagamento (M-Pesa / e-Mola) para eu fazer a transferência agora.";
+
+const WHATSAPP_CTA_URL = `https://wa.me/${WHATSAPP_BUSINESS_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_PREFILLED_MESSAGE
+)}`;
 
 interface CtaButtonProps {
   text?: string;
@@ -15,7 +22,6 @@ export const CtaButton = ({
   href,
   className = "",
 }: CtaButtonProps) => {
-  const { openCheckout } = useCheckoutModal();
   const isAnchor = href?.startsWith("#");
 
   const handleClick = (e: React.MouseEvent) => {
@@ -28,14 +34,18 @@ export const CtaButton = ({
       return;
     }
 
-    // Se tiver openCheckout configurado, abre o checkout próprio e rastreia InitiateCheckout
     e.preventDefault();
+
+    // 1. Rastreia InitiateCheckout e Contact no Meta Pixel & Conversions API
     trackDualMetaEvent('InitiateCheckout', {}, {
       value: 350,
       currency: 'MZN',
       content_name: 'Minicurso Cartão Virtual 2 em 1',
     });
-    openCheckout();
+
+    // 2. Abre imediatamente o WhatsApp Business com a mensagem pronta
+    const targetUrl = href || WHATSAPP_CTA_URL;
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
