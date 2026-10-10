@@ -58,29 +58,32 @@ export const PricingSection = () => {
         >
           {/* Badge */}
           <div className="text-center mb-4">
-            <span className="inline-flex items-center gap-1.5 bg-gradient-red text-primary-foreground font-display font-bold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            <span className="inline-flex items-center gap-1.5 bg-gradient-red text-primary-foreground font-display font-bold text-xs px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm animate-pulse">
               <Zap size={13} />
-              OFERTA ESPECIAL
+              ⚡ LOTE 1 RELÂMPAGO — PRIMEIROS 20 ALUNOS
             </span>
           </div>
 
           {/* Pricing */}
           <div className="text-center mb-6 pb-6 border-b border-border">
             <div className="text-muted-foreground text-xs sm:text-sm font-medium mb-0.5">
-              Valor real da mentoria
+              Valor normal da mentoria
             </div>
             <div className="text-lg sm:text-xl line-through text-muted-foreground/80 font-bold mb-3">
               750 MT
             </div>
 
             <div className="text-primary font-display font-bold text-xs uppercase tracking-widest mb-1">
-              PREÇO PROMOCIONAL:
+              PREÇO PROMOCIONAL DO LOTE 1:
             </div>
             <div className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-gradient-red tracking-tight leading-none mb-2">
-              350 MT
+              199 MT
             </div>
             <p className="text-muted-foreground text-xs font-medium">
               Pagamento único • Acesso completo
+            </p>
+            <p className="text-amber-400 text-[11px] sm:text-xs font-semibold mt-2 bg-amber-500/10 border border-amber-500/20 rounded-lg py-1 px-2.5 max-w-xs mx-auto">
+              ⚠️ Vagas limitadas! Após os 20 alunos, o valor subirá para 350 MT.
             </p>
           </div>
 

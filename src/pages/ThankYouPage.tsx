@@ -36,7 +36,7 @@ export const ThankYouPage = () => {
       setCustomerEmail(email);
     }
 
-    // Dispara o evento oficial de Purchase (350 MT) para o Meta Pixel e Conversions API
+    // Dispara o evento oficial de Purchase (199 MT) para o Meta Pixel e Conversions API
     trackDualMetaEvent(
       'Purchase',
       {
@@ -45,7 +45,7 @@ export const ThankYouPage = () => {
         email: email || undefined,
       },
       {
-        value: 350,
+        value: 199,
         currency: 'MZN',
         content_name: 'Minicurso Cartão Virtual 2 em 1',
       }
@@ -96,7 +96,7 @@ export const ThankYouPage = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed"
         >
-          O teu pagamento de <strong className="text-foreground">350 MT</strong> foi confirmado e o teu acesso oficial já foi atribuído na plataforma da <strong className="text-foreground">Hotmart</strong>.
+          O teu pagamento de <strong className="text-foreground">199 MT</strong> foi confirmado e o teu acesso oficial já foi atribuído na plataforma da <strong className="text-foreground">Hotmart</strong>.
         </motion.p>
 
         {customerEmail && (

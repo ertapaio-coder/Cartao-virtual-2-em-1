@@ -3,7 +3,7 @@ import { trackDualMetaEvent } from '../lib/metaTracking';
 
 const WHATSAPP_BUSINESS_NUMBER = "258862676534";
 const WHATSAPP_PREFILLED_MESSAGE =
-  "Olá Ernesto! Quero garantir minha vaga no Minicurso Cartão Virtual por 350 MT. Por favor, envie os dados de pagamento (M-Pesa / e-Mola) para eu fazer a transferência agora.";
+  "Olá Ernesto! Quero garantir minha vaga no Minicurso Cartão Virtual por 199 MT. Por favor, envie os dados de pagamento (M-Pesa / e-Mola) para eu fazer a transferência agora.";
 
 const WHATSAPP_CTA_URL = `https://wa.me/${WHATSAPP_BUSINESS_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_PREFILLED_MESSAGE
@@ -38,7 +38,7 @@ export const CtaButton = ({
 
     // 1. Rastreia InitiateCheckout e Contact no Meta Pixel & Conversions API
     trackDualMetaEvent('InitiateCheckout', {}, {
-      value: 350,
+      value: 199,
       currency: 'MZN',
       content_name: 'Minicurso Cartão Virtual 2 em 1',
     });
