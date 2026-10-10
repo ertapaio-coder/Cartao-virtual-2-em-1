@@ -31,7 +31,7 @@ export const CtaButton = ({
     // Se tiver openCheckout configurado, abre o checkout próprio e rastreia InitiateCheckout
     e.preventDefault();
     trackDualMetaEvent('InitiateCheckout', {}, {
-      value: 299,
+      value: 350,
       currency: 'MZN',
       content_name: 'Minicurso Cartão Virtual 2 em 1',
     });

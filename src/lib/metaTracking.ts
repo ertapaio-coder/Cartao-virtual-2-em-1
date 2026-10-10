@@ -97,7 +97,7 @@ export async function trackMetaCAPI(
           user_data: hashedUserData,
           custom_data: {
             currency: data.currency || 'MZN',
-            value: data.value || 299,
+            value: data.value || 350,
             content_name: data.content_name || 'Minicurso Cartão Virtual',
           },
         },
@@ -127,7 +127,7 @@ export async function trackDualMetaEvent(
   eventName: 'InitiateCheckout' | 'Purchase',
   userData: TrackingUserData = {},
   customData: { value?: number; currency?: string; content_name?: string } = {
-    value: 299,
+    value: 350,
     currency: 'MZN',
     content_name: 'Minicurso Cartão Virtual',
   }
@@ -138,7 +138,7 @@ export async function trackDualMetaEvent(
   trackBrowserPixel(
     eventName,
     {
-      value: customData.value ?? 299,
+      value: customData.value ?? 350,
       currency: customData.currency ?? 'MZN',
       content_name: customData.content_name ?? 'Minicurso Cartão Virtual',
     },
@@ -150,7 +150,7 @@ export async function trackDualMetaEvent(
     eventName,
     userData,
     {
-      value: customData.value ?? 299,
+      value: customData.value ?? 350,
       currency: customData.currency ?? 'MZN',
       content_name: customData.content_name ?? 'Minicurso Cartão Virtual',
     },

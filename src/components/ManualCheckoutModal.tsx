@@ -25,7 +25,7 @@ const EMOLA_NUMBER = "862676534";
 const ACCOUNT_HOLDER = "Ernesto Frencio Jossias Tapaio";
 const SUPPORT_WHATSAPP = "822974370";
 const SUPPORT_WHATSAPP_LINK = "https://wa.me/258822974370";
-const PRODUCT_PRICE = "299 MT";
+const PRODUCT_PRICE = "350 MT";
 const PRODUCT_NAME = "Minicurso Cartão Virtual 2 em 1";
 
 export const ManualCheckoutModal = () => {
@@ -109,7 +109,7 @@ export const ManualCheckoutModal = () => {
         email: customerEmail,
       },
       {
-        value: 299,
+        value: 350,
         currency: 'MZN',
         content_name: PRODUCT_NAME,
       }
@@ -207,7 +207,7 @@ export const ManualCheckoutModal = () => {
                 <div className="text-right">
                   <div className="text-[11px] line-through text-muted-foreground">750 MT</div>
                   <div className="font-display font-black text-xl sm:text-2xl text-gradient-red leading-none">
-                    299 MT
+                    350 MT
                   </div>
                 </div>
               </div>
