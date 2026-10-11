@@ -24,6 +24,46 @@ function normalizePhone(phone: string): string {
   return digits;
 }
 
+function getCookie(name: string): string | undefined {
+  if (typeof document === 'undefined') return undefined;
+  const match = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
+  return match ? decodeURIComponent(match[2]) : undefined;
+}
+
+function getFbc(): string | undefined {
+  const cookieFbc = getCookie('_fbc');
+  if (cookieFbc) return cookieFbc;
+
+  if (typeof window !== 'undefined') {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const fbclid = params.get('fbclid');
+      if (fbclid) {
+        const generated = `fb.1.${Date.now()}.${fbclid}`;
+        sessionStorage.setItem('meta_fbc', generated);
+        localStorage.setItem('meta_fbc', generated);
+        return generated;
+      }
+      const stored = sessionStorage.getItem('meta_fbc') || localStorage.getItem('meta_fbc');
+      if (stored) return stored;
+    } catch (_) {}
+  }
+  return undefined;
+}
+
+function getFbp(): string | undefined {
+  const cookieFbp = getCookie('_fbp');
+  if (cookieFbp) return cookieFbp;
+
+  if (typeof window !== 'undefined') {
+    try {
+      const stored = sessionStorage.getItem('meta_fbp') || localStorage.getItem('meta_fbp');
+      if (stored) return stored;
+    } catch (_) {}
+  }
+  return undefined;
+}
+
 export interface TrackingUserData {
   name?: string;
   phone?: string;
@@ -62,6 +102,12 @@ export async function trackMetaCAPI(
       client_user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
     };
 
+    const fbp = getFbp();
+    if (fbp) hashedUserData.fbp = fbp;
+
+    const fbc = getFbc();
+    if (fbc) hashedUserData.fbc = fbc;
+
     if (userData.phone) {
       const cleanPhone = normalizePhone(userData.phone);
       const hashedPhone = await sha256(cleanPhone);
@@ -97,7 +143,7 @@ export async function trackMetaCAPI(
           user_data: hashedUserData,
           custom_data: {
             currency: data.currency || 'MZN',
-            value: data.value || 350,
+            value: data.value || 199,
             content_name: data.content_name || 'Minicurso Cartão Virtual',
           },
         },

@@ -8,16 +8,21 @@ import {
   MessageCircle,
   ShieldCheck,
   ExternalLink,
+  Copy,
+  Check,
+  Sparkles,
 } from 'lucide-react';
 import { trackDualMetaEvent } from '../lib/metaTracking';
 
 const SUPPORT_WHATSAPP_NUMBER = "862676534";
-const SUPPORT_WHATSAPP_LINK = "https://wa.me/258862676534?text=Ol%C3%A1%20Ernesto!%20J%C3%A1%20estou%20na%20p%C3%A1gina%20de%20obrigado%20e%20preciso%20de%20ajuda%20com%20o%20meu%20acesso.";
+const SUPPORT_WHATSAPP_LINK = "https://wa.me/258862676534";
 const HOTMART_LOGIN_URL = "https://consumer.hotmart.com/";
 
 export const ThankYouPage = () => {
   const [customerName, setCustomerName] = useState<string>('');
   const [customerEmail, setCustomerEmail] = useState<string>('');
+  const [copied, setCopied] = useState<boolean>(false);
+  const [activationCode, setActivationCode] = useState<string>('CV-199-VIP');
 
   useEffect(() => {
     // Altera o título da aba do navegador
@@ -34,26 +39,71 @@ export const ThankYouPage = () => {
       phone = params.get('tel') || params.get('phone') || '';
       setCustomerName(name);
       setCustomerEmail(email);
+
+      // Gera código de ativação amigável
+      if (email) {
+        const clean = email.replace(/[^a-zA-Z0-9]/g, '').slice(0, 4).toUpperCase();
+        setActivationCode(`CV-199-${clean || 'ATIVAR'}`);
+      } else {
+        setActivationCode('CV-199-ATIVAR');
+      }
     }
 
-    // Dispara o evento oficial de Purchase (199 MT) para o Meta Pixel e Conversions API
-    trackDualMetaEvent(
-      'Purchase',
-      {
-        name: name || undefined,
-        phone: phone || undefined,
-        email: email || undefined,
-      },
-      {
-        value: 199,
-        currency: 'MZN',
-        content_name: 'Minicurso Cartão Virtual 2 em 1',
-      }
+    // TRAVA DE DEDUPLICAÇÃO:
+    // Garante que o evento de compra de 199 MT só dispara UMA VEZ por comprador no dispositivo.
+    // Recarregar a página ou reabrir não gera eventos duplicados falsos.
+    const lockKey = email ? `meta_purchase_fired_${email.toLowerCase().trim()}` : 'meta_purchase_fired_device';
+    const isAlreadyFired = typeof window !== 'undefined' && (
+      sessionStorage.getItem(lockKey) || localStorage.getItem(lockKey)
     );
+
+    if (!isAlreadyFired) {
+      // Dispara o evento oficial de Purchase (199 MT) para o Meta Pixel e Conversions API
+      trackDualMetaEvent(
+        'Purchase',
+        {
+          name: name || undefined,
+          phone: phone || undefined,
+          email: email || undefined,
+        },
+        {
+          value: 199,
+          currency: 'MZN',
+          content_name: 'Minicurso Cartão Virtual 2 em 1',
+        }
+      );
+
+      try {
+        sessionStorage.setItem(lockKey, 'true');
+        localStorage.setItem(lockKey, Date.now().toString());
+      } catch (_) {}
+    }
   }, []);
 
+  const handleCopyCode = () => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(activationCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
+
+  const getWhatsAppValidationUrl = () => {
+    const textLines = [
+      `👋 *Olá Ernesto! Já acabei de abrir a minha página oficial de confirmação.*`,
+      '',
+      `🔑 *MEU CÓDIGO DE ATIVAÇÃO:* ${activationCode}`,
+      `📧 *MEU E-MAIL PARA HOTMART:* ${customerEmail || 'Já informado'}`,
+      customerName ? `👤 *MEU NOME:* ${customerName}` : '',
+      '',
+      `✅ *Por favor, libere agora o meu acesso oficial às aulas do Minicurso Cartão Virtual!*`,
+    ].filter(Boolean);
+
+    return `${SUPPORT_WHATSAPP_LINK}?text=${encodeURIComponent(textLines.join('\n'))}`;
+  };
+
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased font-sans relative selection:bg-primary/20 selection:text-primary py-12 px-4 sm:px-6 flex flex-col justify-between overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground antialiased font-sans relative selection:bg-primary/20 selection:text-primary py-10 px-4 sm:px-6 flex flex-col justify-between overflow-x-hidden">
       {/* Background ambient glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -63,9 +113,9 @@ export const ThankYouPage = () => {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: 'spring', damping: 14 }}
-          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center mx-auto text-emerald-400 mb-6 shadow-lg shadow-emerald-500/10"
+          className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center mx-auto text-emerald-400 mb-5 shadow-lg shadow-emerald-500/10"
         >
-          <CheckCircle2 size={44} className="sm:size-52" />
+          <CheckCircle2 size={38} className="sm:size-48" />
         </motion.div>
 
         {/* Badge */}
@@ -74,8 +124,8 @@ export const ThankYouPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <span className="inline-block bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-xs uppercase tracking-widest px-3.5 py-1 rounded-full mb-4">
-            ✓ PAGAMENTO CONFIRMADO • ACESSO LIBERADO
+          <span className="inline-block bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-xs uppercase tracking-widest px-3.5 py-1 rounded-full mb-3">
+            ✓ PAGAMENTO CONFIRMADO • ATIVAÇÃO PENDENTE
           </span>
         </motion.div>
 
@@ -84,7 +134,7 @@ export const ThankYouPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-2xl sm:text-4xl md:text-5xl font-display font-bold leading-tight mb-4"
+          className="text-xl sm:text-3xl md:text-4xl font-display font-bold leading-tight mb-3"
         >
           Parabéns{customerName ? `, ${customerName}` : ''}! O teu acesso ao <br className="hidden sm:inline" />
           <span className="text-gradient-red">Minicurso Cartão Virtual</span> está pronto! 🎉
@@ -94,15 +144,75 @@ export const ThankYouPage = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed"
+          className="text-muted-foreground text-xs sm:text-sm max-w-xl mx-auto mb-6 leading-relaxed"
         >
-          O teu pagamento de <strong className="text-foreground">199 MT</strong> foi confirmado e o teu acesso oficial já foi atribuído na plataforma da <strong className="text-foreground">Hotmart</strong>.
+          O teu pagamento de <strong className="text-foreground">199 MT</strong> foi confirmado. Para finalizar a liberação do teu acesso na plataforma da <strong className="text-foreground">Hotmart</strong>, segue o passo abaixo:
         </motion.p>
 
+        {/* 🌟 BLOCO ESTRATÉGICO: TAREFA DO CÓDIGO DE ATIVAÇÃO 🌟 */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="bg-gradient-to-b from-card to-secondary/50 border-2 border-emerald-500/50 rounded-2xl p-5 sm:p-6 shadow-2xl text-center max-w-xl mx-auto mb-8 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 bg-emerald-500 text-black font-bold text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-bl-lg font-mono">
+            PASSO OBRIGATÓRIO
+          </div>
+
+          <div className="inline-flex items-center gap-1.5 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
+            <Sparkles size={14} />
+            <span>O teu Código de Ativação Oficial</span>
+          </div>
+
+          <p className="text-xs text-foreground/90 mb-4 max-w-md mx-auto">
+            Copia o código abaixo ou clica no botão verde para enviá-lo diretamente no WhatsApp do instrutor e liberar a tua conta na Hotmart agora:
+          </p>
+
+          {/* Código em destaque com botão de copiar */}
+          <div className="flex items-center justify-center gap-2 bg-background/80 border border-emerald-500/40 rounded-xl p-3 max-w-sm mx-auto mb-4">
+            <span className="font-mono font-black text-lg sm:text-xl text-emerald-400 tracking-wider">
+              {activationCode}
+            </span>
+            <button
+              type="button"
+              onClick={handleCopyCode}
+              className="inline-flex items-center gap-1 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-lg transition-all cursor-pointer active:scale-95"
+            >
+              {copied ? (
+                <>
+                  <Check size={13} />
+                  <span>Copiado!</span>
+                </>
+              ) : (
+                <>
+                  <Copy size={13} />
+                  <span>Copiar</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Botão de Envio Direto para o WhatsApp */}
+          <a
+            href={getWhatsAppValidationUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-display font-bold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-lg transition-all hover:scale-[1.01] active:scale-[0.99] uppercase tracking-wide cursor-pointer"
+          >
+            <MessageCircle size={17} />
+            <span>Enviar Código no WhatsApp e Liberar Acesso ➔</span>
+          </a>
+
+          <p className="text-[11px] text-muted-foreground mt-2.5">
+            Ao clicar, abre o WhatsApp oficial com o teu código preenchido para validação imediata.
+          </p>
+        </motion.div>
+
         {customerEmail && (
-          <div className="mb-8 inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-4 py-2 rounded-xl text-xs font-semibold text-primary font-mono">
-            <Mail size={14} />
-            <span>Acesso enviado para: <strong>{customerEmail}</strong></span>
+          <div className="mb-6 inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-primary font-mono">
+            <Mail size={13} />
+            <span>Acesso será liberado para: <strong>{customerEmail}</strong></span>
           </div>
         )}
 
@@ -111,25 +221,25 @@ export const ThankYouPage = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-card border border-border rounded-2xl p-4 sm:p-8 shadow-2xl text-left max-w-2xl mx-auto mb-8 space-y-5 sm:space-y-6"
+          className="bg-card border border-border rounded-2xl p-4 sm:p-7 shadow-2xl text-left max-w-2xl mx-auto mb-8 space-y-4 sm:space-y-5"
         >
-          <h2 className="font-display font-bold text-sm sm:text-lg text-foreground uppercase tracking-wide border-b border-border pb-3 flex flex-wrap items-center justify-between gap-2">
-            <span>Como Aceder às Aulas Agora (3 Passos):</span>
-            <span className="text-[11px] sm:text-xs text-primary font-mono font-semibold">Área Hotmart</span>
+          <h2 className="font-display font-bold text-sm sm:text-base text-foreground uppercase tracking-wide border-b border-border pb-3 flex flex-wrap items-center justify-between gap-2">
+            <span>Como Aceder às Aulas na Hotmart (3 Passos):</span>
+            <span className="text-[11px] sm:text-xs text-primary font-mono font-semibold">Área de Membros</span>
           </h2>
 
-          <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-4">
             {/* Passo 1 */}
             <div className="flex items-start gap-3 sm:gap-4">
               <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0 text-primary mt-0.5">
                 <Mail size={16} className="sm:size-18" />
               </div>
               <div>
-                <h3 className="font-semibold text-xs sm:text-base text-foreground mb-1">
+                <h3 className="font-semibold text-xs sm:text-sm text-foreground mb-0.5">
                   1. Verifica o teu E-mail
                 </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Abre a caixa de entrada do e-mail que informaste e procura pela mensagem de boas-vindas enviada pela <strong>Hotmart</strong>. <em>(Dica: confere também a pasta de Spam ou Promoções se não vires na caixa principal).</em>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Abre a caixa de entrada do e-mail que informaste e procura pela mensagem oficial enviada pela <strong>Hotmart</strong>. <em>(Dica: confere também a pasta de Spam ou Promoções).</em>
                 </p>
               </div>
             </div>
@@ -140,10 +250,10 @@ export const ThankYouPage = () => {
                 <KeyRound size={16} className="sm:size-18" />
               </div>
               <div>
-                <h3 className="font-semibold text-xs sm:text-base text-foreground mb-1">
+                <h3 className="font-semibold text-xs sm:text-sm text-foreground mb-0.5">
                   2. Define a tua Senha Pessoal
                 </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   Clica no link dentro do e-mail da Hotmart para criar a tua senha de segurança e ativar a tua conta pessoal.
                 </p>
               </div>
@@ -155,10 +265,10 @@ export const ThankYouPage = () => {
                 <PlayCircle size={16} className="sm:size-18" />
               </div>
               <div>
-                <h3 className="font-semibold text-xs sm:text-base text-foreground mb-1">
+                <h3 className="font-semibold text-xs sm:text-sm text-foreground mb-0.5">
                   3. Começa a Assistir Imediatamente
                 </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   Acede ao Hotmart Club e segue as aulas passo a passo para criar, carregar com M-Pesa/e-Mola e ativar o teu cartão virtual 2 em 1!
                 </p>
               </div>
@@ -166,7 +276,7 @@ export const ThankYouPage = () => {
           </div>
 
           {/* Botão de Atalho para Hotmart */}
-          <div className="pt-4 border-t border-border flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+          <div className="pt-3 border-t border-border flex flex-col sm:flex-row gap-2.5">
             <a
               href={HOTMART_LOGIN_URL}
               target="_blank"
