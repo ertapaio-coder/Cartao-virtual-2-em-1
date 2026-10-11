@@ -89,13 +89,13 @@ export const ProofsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (idx % 6) * 0.08 }}
-              className="flex justify-center bg-card/60 border border-border hover:border-red/40 rounded-2xl p-2.5 sm:p-3 transition-all hover:-translate-y-1 group shadow-sm hover:shadow-red-strong/20"
+              className="flex justify-center"
             >
               <img
                 src={proof.imageSrc}
                 alt={proof.alt}
                 referrerPolicy="no-referrer"
-                className="w-full h-auto object-contain rounded-xl border border-border/60 transition-transform duration-300 group-hover:scale-[1.01]"
+                className="w-full max-w-sm h-auto object-contain rounded-xl shadow-md"
                 loading="lazy"
               />
             </motion.div>
