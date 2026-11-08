@@ -14,15 +14,15 @@ import {
 } from 'lucide-react';
 import { trackDualMetaEvent } from '../lib/metaTracking';
 
-const SUPPORT_WHATSAPP_NUMBER = "862676534";
-const SUPPORT_WHATSAPP_LINK = "https://wa.me/258862676534";
+const SUPPORT_WHATSAPP_NUMBER = "844810213";
+const SUPPORT_WHATSAPP_LINK = "https://wa.me/258844810213";
 const HOTMART_LOGIN_URL = "https://consumer.hotmart.com/";
 
 export const ThankYouPage = () => {
   const [customerName, setCustomerName] = useState<string>('');
   const [customerEmail, setCustomerEmail] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
-  const [activationCode, setActivationCode] = useState<string>('CV-199-VIP');
+  const [activationCode, setActivationCode] = useState<string>('CV-350-VIP');
 
   useEffect(() => {
     // Altera o título da aba do navegador
@@ -43,14 +43,14 @@ export const ThankYouPage = () => {
       // Gera código de ativação amigável
       if (email) {
         const clean = email.replace(/[^a-zA-Z0-9]/g, '').slice(0, 4).toUpperCase();
-        setActivationCode(`CV-199-${clean || 'ATIVAR'}`);
+        setActivationCode(`CV-350-${clean || 'ATIVAR'}`);
       } else {
-        setActivationCode('CV-199-ATIVAR');
+        setActivationCode('CV-350-ATIVAR');
       }
     }
 
     // TRAVA DE DEDUPLICAÇÃO:
-    // Garante que o evento de compra de 199 MT só dispara UMA VEZ por comprador no dispositivo.
+    // Garante que o evento de compra de 350 MT só dispara UMA VEZ por comprador no dispositivo.
     // Recarregar a página ou reabrir não gera eventos duplicados falsos.
     const lockKey = email ? `meta_purchase_fired_${email.toLowerCase().trim()}` : 'meta_purchase_fired_device';
     const isAlreadyFired = typeof window !== 'undefined' && (
@@ -58,7 +58,7 @@ export const ThankYouPage = () => {
     );
 
     if (!isAlreadyFired) {
-      // Dispara o evento oficial de Purchase (199 MT) para o Meta Pixel e Conversions API
+      // Dispara o evento oficial de Purchase (350 MT) para o Meta Pixel e Conversions API
       trackDualMetaEvent(
         'Purchase',
         {
@@ -67,7 +67,7 @@ export const ThankYouPage = () => {
           email: email || undefined,
         },
         {
-          value: 199,
+          value: 350,
           currency: 'MZN',
           content_name: 'Minicurso Cartão Virtual 2 em 1',
         }
@@ -146,7 +146,7 @@ export const ThankYouPage = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-muted-foreground text-xs sm:text-sm max-w-xl mx-auto mb-6 leading-relaxed"
         >
-          O teu pagamento de <strong className="text-foreground">199 MT</strong> foi confirmado. Para finalizar a liberação do teu acesso na plataforma da <strong className="text-foreground">Hotmart</strong>, segue o passo abaixo:
+          O teu pagamento de <strong className="text-foreground">350 MT</strong> foi confirmado. Para finalizar a liberação do teu acesso na plataforma da <strong className="text-foreground">Hotmart</strong>, segue o passo abaixo:
         </motion.p>
 
         {/* 🌟 BLOCO ESTRATÉGICO: TAREFA DO CÓDIGO DE ATIVAÇÃO 🌟 */}
